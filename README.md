@@ -7,6 +7,7 @@ class Map {
   - width: number
   - height: number
   - getNeighbours(Field)
+  + loadMap(content)$ : Map
 }
 Map *--> "*" Field : fields[ ][ ]
 Map --> "1" Field : start
@@ -25,16 +26,16 @@ class Path {
 }
 Path --> Field : steps
 
-class Walker {
+class Climber {
   + canClimb(Field)
 }
-Walker --> "1" Field: position
-Walker --> "1" Path: trip
+Climber --> "1" Field: position
+Climber --> "1" Path: trip
 
 class ShortestPathFinder{
   + solve(): Path
 }
-ShortestPathFinder --> Walker : walker
+ShortestPathFinder --> Climber : climber
 ShortestPathFinder --> Map : map
 ```
 ## Task
