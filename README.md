@@ -30,6 +30,12 @@ class Walker {
 }
 Walker --> "1" Field: position
 Walker --> "1" Path: trip
+
+class ShortestPathFinder{
+  + solve(): Path
+}
+ShortestPathFinder --> Walker : walker
+ShortestPathFinder --> Map : map
 ```
 ## Task
 --- Day 12: Hill Climbing Algorithm ---
