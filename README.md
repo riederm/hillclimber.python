@@ -1,5 +1,22 @@
 # hillclimber.python
 
+## getting started
+
+- install dependencies using `pip3 install -r requirements.txt`
+- run tests by running `python3 -m pytest -v`
+  - note that the `-v` attribute will show printed lines (if you need some debugging-information)
+
+###
+```
+.
+├── README.md             this file
+├── requirements.txt      the dependencies used in this project
+├── src                   source code
+│   └── model.py          the model classes
+└── tests                 test code
+    └── test_model.py     model test code
+```
+
 ## Class Diagram
 ```mermaid
 classDiagram
