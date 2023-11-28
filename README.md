@@ -23,10 +23,11 @@ classDiagram
 class Map {
   - width: number
   - height: number
-  - getNeighbours(Field)
-  + loadMap(content)$ : Map
+  + get_neighbours(field): Field[]
+  + get_field(x,y): Field
+  + from_string(content)$ : Map
 }
-Map *--> "*" Field : fields[ ][ ]
+Map *--> "*" Field : fields
 Map --> "1" Field : start
 Map --> "1" Field : target
 
@@ -37,23 +38,23 @@ class Field {
 }
 
 class Path {
-  + addStep(Field)
-  + removeLastStep(Field)
-  + getLength()
+  + add_step(Field)
+  + remove_lastStep(Field)
+  + get_length(): number
+  + get_last_step(): Field
+  + field_visited(field): boolean
+  + copy(field): boolean
 }
 Path --> Field : steps
 
-class Climber {
-  + canClimb(Field)
+class Walker {
+  + walk(Field)
+  + can_walk(Field): boolean
+  + has_walked(Field): boolean
 }
-Climber --> "1" Field: position
-Climber --> "1" Path: trip
+Walker --> "1" Field: position
+Walker --> "1" Path: path
 
-class ShortestPathFinder{
-  + solve(): Path
-}
-ShortestPathFinder --> Climber : climber
-ShortestPathFinder --> Map : map
 ```
 ## Task
 --- Day 12: Hill Climbing Algorithm ---
