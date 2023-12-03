@@ -2,13 +2,13 @@ import time
 import tkinter as tk
 import matplotlib.cm as cm
 from numpy import stack
-from PathFinder import BruteForcer, RecursivePathFinder, OrientationWalker, WalkerWithMemory1
+from PathFinder import BruteForcer, OrientationWalker, WalkerWithMemory1
 
 from model import Map, Path, Walker
 min_elevation = 0
 max_elevation = 26
 pause = 10
-size = 20
+size = 10
 steps = 5000
 
 def elevation_to_color(elevation):
@@ -23,7 +23,7 @@ window = tk.Tk()
 
 # read map from file
 map_string = ""
-with open("/workspaces/hillclimber.python/src/map.txt", "r") as f:
+with open("map.txt", "r") as f:
     map_string = f.read()
     
 map = Map.from_string(map_string)
@@ -57,7 +57,7 @@ pause_button.pack()
 for x in range(map.width):
     for y in range(map.height):
         field = map.get_field(x, y)
-        rectangle = canvas.create_rectangle(x*size, y*size, (x+1)*size, (y+1)*size, fill=elevation_to_color(field.elevation))
+        rectangle = canvas.create_rectangle(x*size, y*size, (x+1)*size, (y+1)*size, fill=elevation_to_color(field.elevation), outline='black')
         rectangles[(x, y)] = rectangle
 
 def animate_path():
