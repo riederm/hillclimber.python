@@ -120,22 +120,25 @@ class Path:
     def __init__(self):
         # Initialize an empty list of fields
         self.fields = []
+        self.fieldSet = set()
 
     def add_step(self, field):
         # Add a new step to the path
         self.fields.append(field)
+        self.fieldSet.add((field.x, field.y))
 
     def remove_last_step(self):
         # Remove the last step from the path
         if self.fields:
-            self.fields.pop()
+            f = self.fields.pop()
+            self.fieldSet.remove((f.x, f.y))
             
     def get_length(self):
         # returns the number of steps in this path
         return len(self.fields)
     
     def field_visited(self, field):
-        return field in self.fields
+        return (field.x, field.y) in self.fieldSet
     
     def get_last_step(self):
         return self.fields[-1]
@@ -144,15 +147,9 @@ class Path:
         # returns a copy of this path
         p = Path()
         p.fields = self.fields.copy()
+        p.fieldSet = self.fieldSet.copy()
         return p
     
     def __repr__(self):
         # Return a string representation of the path
         return f'Path({self.fields})'
-
-multilinestring = """\
-abc
-def
-ghi"""
-
-print(multilinestring)
